@@ -1,0 +1,10 @@
+<h1>Actions </h1>
+{% if data %}
+    <ul>
+    {% for action in data %}
+        <li><a href="{% url 'actions:detail' action.id %}">{{ action.title }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No actions are available.</p>
+{% endif %}

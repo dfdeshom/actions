@@ -1,0 +1,8 @@
+<h1>Action details</h1>
+{% if action %}
+<div id="name">Title: {{ action.title }} </div>
+<div id="description">Description: {{ action.description }} </div>
+{% else %}
+    <p>No actions are available.</p>
+{% endif %}
+

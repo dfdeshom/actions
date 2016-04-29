@@ -21,7 +21,7 @@ For a local environment, run:
     $ python manage.py runserver
 
 Navigate to  http://127.0.0.1:8000/actions to see all actions
-actions. and to http://127.0.0.1:8000/actions/thismonth to see actions
+actions and to http://127.0.0.1:8000/actions/thismonth to see actions
 from this month only.
 
 

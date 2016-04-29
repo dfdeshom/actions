@@ -8,31 +8,38 @@ from django.contrib.auth.models import User
 
 from django.views.generic import ListView, DetailView
 
+
 class ActionList(ListView):
     model = Action
     queryset = Action.objects.order_by('-creation_date')
     context_object_name = 'data'
     template_name = 'actions/index.html'
 
+
 class ActionsThisMonth(ListView):
     model = Action
     template_name = 'actions/index.html'
     context_object_name = 'data'
-    
+
     def get_queryset(self):
         today = date.today()
-        _, last_date = calendar.monthrange(today.year,today.month)
-        start_date = date(year=today.year,month=today.month,day=1)
-        end_date = date(year=today.year,month=today.month,day=last_date)
-        return Action.objects.filter(creation_date__gte=start_date).filter(creation_date__lte=end_date)
+        _, last_date = calendar.monthrange(today.year, today.month)
+        start_date = date(year=today.year, month=today.month, day=1)
+        end_date = date(year=today.year, month=today.month, day=last_date)
+        print 'qs: ', start_date, end_date
+        return (Action.objects.filter(creation_date__gte=start_date).
+                filter(creation_date__lte=end_date))
+
 
 class ActionDetail(DetailView):
-   model = Action
-   queryset = Action.objects.all()
-   template_name = 'actions/detail.html'
-   context_object_name = 'action'
-    
+    model = Action
+    queryset = Action.objects.all()
+    template_name = 'actions/detail.html'
+    context_object_name = 'action'
+
 # Forms to create, change, delete action
+
+
 def new_action(request):
     if request.method == 'POST':
         form = ActionForm(request.POST)
@@ -50,10 +57,11 @@ def new_action(request):
 
     return render(request, 'actions/new.html', {'form': form})
 
-def edit_action(request,pk):
+
+def edit_action(request, pk):
     if request.method == 'POST':
         action = Action.objects.get(pk=pk)
-        form = ActionForm(request.POST,instance=action)
+        form = ActionForm(request.POST, instance=action)
         delete = request.POST.get('delete')
         if delete:
             action.delete()
@@ -66,4 +74,4 @@ def edit_action(request,pk):
         action = Action.objects.get(pk=pk)
         form = ActionForm(instance=action)
 
-    return render(request, 'actions/edit.html', {'form': form,'pk':pk})
+    return render(request, 'actions/edit.html', {'form': form, 'pk': pk})

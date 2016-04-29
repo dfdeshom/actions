@@ -10,9 +10,10 @@ fashion relative to the current month.
 Instal dependencies:
 $ pip install -r requirements.py
 
-Migrate the database:
+Migrate the database and create a super-user
     
     $ python manage.py migrate
+    $ python manage.py createsuperuser --username=joe --email=joe@example.com
 
 For a local environment, run
 

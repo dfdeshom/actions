@@ -37,10 +37,9 @@ class ActionDetail(DetailView):
     template_name = 'actions/detail.html'
     context_object_name = 'action'
 
-# Forms to create, change, delete action
-
 
 def new_action(request):
+    """Create a new Action."""
     if request.method == 'POST':
         form = ActionForm(request.POST)
         if form.is_valid():
@@ -59,6 +58,7 @@ def new_action(request):
 
 
 def edit_action(request, pk):
+    """Edit an existing action."""
     if request.method == 'POST':
         action = Action.objects.get(pk=pk)
         form = ActionForm(request.POST, instance=action)

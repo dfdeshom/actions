@@ -53,5 +53,3 @@ def create_random_action(thismonth=True):
                           user=create_random_user(),
                           creation_date=date
                           )
-    if thismonth is False:
-        print 'date returned:', date, title

@@ -26,8 +26,8 @@ class ActionsThisMonth(ListView):
         _, last_date = calendar.monthrange(today.year, today.month)
         start_date = date(year=today.year, month=today.month, day=1)
         end_date = date(year=today.year, month=today.month, day=last_date)
-        print 'qs: ', start_date, end_date
-        return (Action.objects.filter(creation_date__gte=start_date).
+        return (Action.objects.
+                filter(creation_date__gte=start_date).
                 filter(creation_date__lte=end_date))
 
 

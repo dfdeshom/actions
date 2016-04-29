@@ -2,6 +2,7 @@
 {% if action %}
 <div id="name">Title: {{ action.title }} </div>
 <div id="description">Description: {{ action.description }} </div>
+<div id="date">Created at: {{ action.creation_date }} </div>
 {% else %}
     <p>No actions are available.</p>
 {% endif %}

@@ -3,6 +3,8 @@
 <div id="name">Title: {{ action.title }} </div>
 <div id="description">Description: {{ action.description }} </div>
 <div id="date">Created at: {{ action.creation_date }} </div>
+<a href="{%url 'actions:edit' action.id %}">[Edit]</a>
+
 {% else %}
     <p>No actions are available.</p>
 {% endif %}
